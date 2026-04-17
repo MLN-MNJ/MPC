@@ -1,0 +1,23 @@
+# Remove the file from git tracking (keeps it on disk)
+git rm --cached .vscode/browse.vc.db
+
+# Add vscode and build artifacts to gitignore
+cat >> .gitignore << 'EOF'
+.vscode/
+build/
+install/
+log/
+__pycache__/
+*.pyc
+*.db
+EOF
+
+git add .gitignore
+git commit -m "Remove vscode db and add gitignore"
+git push.vscode/
+build/
+install/
+log/
+__pycache__/
+*.pyc
+*.db

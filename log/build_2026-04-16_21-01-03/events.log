@@ -1,0 +1,148 @@
+[0.000000] (-) TimerEvent: {}
+[0.000543] (mpc) JobQueued: {'identifier': 'mpc', 'dependencies': OrderedDict()}
+[0.000590] (mpc) JobStarted: {'identifier': 'mpc'}
+[0.008052] (mpc) JobProgress: {'identifier': 'mpc', 'progress': 'cmake'}
+[0.008529] (mpc) JobProgress: {'identifier': 'mpc', 'progress': 'build'}
+[0.008953] (mpc) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc', '--', '-j16', '-l16'], 'cwd': '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'milan'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/milan/acados/lib'), ('ACADOS_SOURCE_DIR', '/home/milan/acados'), ('HOME', '/home/milan'), ('OLDPWD', '/home/milan/roboracer_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(.venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('MANAGERPID', '1327'), ('SYSTEMD_EXEC_PID', '2254'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '5622'), ('COLCON_PREFIX_PATH', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install:/home/milan/sim_ws/install:/home/milan/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'milan'), ('JOURNAL_STREAM', '8:1827'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'milan'), ('TERM', 'xterm-256color'), ('RMW_IMPLEMENTAION', 'rmw_cyclonedds_cpp'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/milan/sim_ws/.venv/bin:/opt/ros/humble/bin:/home/milan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/milan-ROG-Zephyrus-G14-GA403UV-GA403UV:@/tmp/.ICE-unix/2204,unix/milan-ROG-Zephyrus-G14-GA403UV-GA403UV:/tmp/.ICE-unix/2204'), ('INVOCATION_ID', '0d8cab0bc6934c36ba9e9b0e56f8b2e0'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('VIRTUAL_ENV_PROMPT', '(.venv)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc:/home/milan/sim_ws/install/f1tenth_gym_ros:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:2a1ce8e4-6e42-43c8-a975-610696928596'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VIRTUAL_ENV', '/home/milan/sim_ws/.venv'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc'), ('TURTLEBOT3_MODEL', 'waffle'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages:/home/milan/sim_ws/install/f1tenth_gym_ros/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc:/usr/local::/home/milan/sim_ws/install/f1tenth_gym_ros:/opt/ros/humble')]), 'shell': False}
+[0.059320] (mpc) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/mpc_node.dir/src/mpc_node.cpp.o\x1b[0m\n'}
+[0.060208] (mpc) StdoutLine: {'line': b'[ 50%] Built target ament_cmake_python_copy_mpc\n'}
+[0.060274] (mpc) StdoutLine: {'line': b'[ 50%] Built target ament_cmake_python_copy_mpc_setup\n'}
+[0.099732] (-) TimerEvent: {}
+[0.200088] (-) TimerEvent: {}
+[0.231618] (mpc) StdoutLine: {'line': b'running egg_info\n'}
+[0.232095] (mpc) StdoutLine: {'line': b'writing mpc.egg-info/PKG-INFO\n'}
+[0.232340] (mpc) StdoutLine: {'line': b'writing dependency_links to mpc.egg-info/dependency_links.txt\n'}
+[0.232506] (mpc) StdoutLine: {'line': b'writing top-level names to mpc.egg-info/top_level.txt\n'}
+[0.234457] (mpc) StdoutLine: {'line': b"reading manifest file 'mpc.egg-info/SOURCES.txt'\n"}
+[0.234762] (mpc) StdoutLine: {'line': b"writing manifest file 'mpc.egg-info/SOURCES.txt'\n"}
+[0.264098] (mpc) StdoutLine: {'line': b'[ 50%] Built target ament_cmake_python_build_mpc_egg\n'}
+[0.300200] (-) TimerEvent: {}
+[0.400690] (-) TimerEvent: {}
+[0.501128] (-) TimerEvent: {}
+[0.601462] (-) TimerEvent: {}
+[0.701797] (-) TimerEvent: {}
+[0.802161] (-) TimerEvent: {}
+[0.902620] (-) TimerEvent: {}
+[1.002984] (-) TimerEvent: {}
+[1.103310] (-) TimerEvent: {}
+[1.203629] (-) TimerEvent: {}
+[1.303988] (-) TimerEvent: {}
+[1.404325] (-) TimerEvent: {}
+[1.504644] (-) TimerEvent: {}
+[1.604961] (-) TimerEvent: {}
+[1.705283] (-) TimerEvent: {}
+[1.805634] (-) TimerEvent: {}
+[1.906089] (-) TimerEvent: {}
+[2.006444] (-) TimerEvent: {}
+[2.106852] (-) TimerEvent: {}
+[2.207277] (-) TimerEvent: {}
+[2.307589] (-) TimerEvent: {}
+[2.407899] (-) TimerEvent: {}
+[2.508219] (-) TimerEvent: {}
+[2.608526] (-) TimerEvent: {}
+[2.708843] (-) TimerEvent: {}
+[2.809147] (-) TimerEvent: {}
+[2.909461] (-) TimerEvent: {}
+[3.009770] (-) TimerEvent: {}
+[3.110094] (-) TimerEvent: {}
+[3.210411] (-) TimerEvent: {}
+[3.310735] (-) TimerEvent: {}
+[3.411083] (-) TimerEvent: {}
+[3.511405] (-) TimerEvent: {}
+[3.611719] (-) TimerEvent: {}
+[3.712040] (-) TimerEvent: {}
+[3.812364] (-) TimerEvent: {}
+[3.912679] (-) TimerEvent: {}
+[4.012994] (-) TimerEvent: {}
+[4.113329] (-) TimerEvent: {}
+[4.213640] (-) TimerEvent: {}
+[4.313961] (-) TimerEvent: {}
+[4.414314] (-) TimerEvent: {}
+[4.514629] (-) TimerEvent: {}
+[4.614943] (-) TimerEvent: {}
+[4.715277] (-) TimerEvent: {}
+[4.815625] (-) TimerEvent: {}
+[4.915964] (-) TimerEvent: {}
+[5.016293] (-) TimerEvent: {}
+[5.116669] (-) TimerEvent: {}
+[5.216986] (-) TimerEvent: {}
+[5.317307] (-) TimerEvent: {}
+[5.417619] (-) TimerEvent: {}
+[5.517936] (-) TimerEvent: {}
+[5.618264] (-) TimerEvent: {}
+[5.718583] (-) TimerEvent: {}
+[5.818963] (-) TimerEvent: {}
+[5.919403] (-) TimerEvent: {}
+[6.019713] (-) TimerEvent: {}
+[6.120023] (-) TimerEvent: {}
+[6.220349] (-) TimerEvent: {}
+[6.320662] (-) TimerEvent: {}
+[6.420982] (-) TimerEvent: {}
+[6.521343] (-) TimerEvent: {}
+[6.621634] (-) TimerEvent: {}
+[6.722022] (-) TimerEvent: {}
+[6.822389] (-) TimerEvent: {}
+[6.922681] (-) TimerEvent: {}
+[7.022996] (-) TimerEvent: {}
+[7.123390] (-) TimerEvent: {}
+[7.223777] (-) TimerEvent: {}
+[7.324142] (-) TimerEvent: {}
+[7.424511] (-) TimerEvent: {}
+[7.524871] (-) TimerEvent: {}
+[7.625269] (-) TimerEvent: {}
+[7.725609] (-) TimerEvent: {}
+[7.825936] (-) TimerEvent: {}
+[7.926371] (-) TimerEvent: {}
+[8.026697] (-) TimerEvent: {}
+[8.127036] (-) TimerEvent: {}
+[8.227310] (-) TimerEvent: {}
+[8.327631] (-) TimerEvent: {}
+[8.427964] (-) TimerEvent: {}
+[8.528362] (-) TimerEvent: {}
+[8.628815] (-) TimerEvent: {}
+[8.729132] (-) TimerEvent: {}
+[8.829473] (-) TimerEvent: {}
+[8.929815] (-) TimerEvent: {}
+[8.933532] (mpc) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable mpc_node\x1b[0m\n'}
+[9.029923] (-) TimerEvent: {}
+[9.130288] (-) TimerEvent: {}
+[9.230613] (-) TimerEvent: {}
+[9.330959] (-) TimerEvent: {}
+[9.364446] (mpc) StdoutLine: {'line': b'[100%] Built target mpc_node\n'}
+[9.377688] (mpc) CommandEnded: {'returncode': 0}
+[9.378249] (mpc) JobProgress: {'identifier': 'mpc', 'progress': 'install'}
+[9.387003] (mpc) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc'], 'cwd': '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'milan'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/milan/acados/lib'), ('ACADOS_SOURCE_DIR', '/home/milan/acados'), ('HOME', '/home/milan'), ('OLDPWD', '/home/milan/roboracer_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PS1', '(.venv) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$'), ('MANAGERPID', '1327'), ('SYSTEMD_EXEC_PID', '2254'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '5622'), ('COLCON_PREFIX_PATH', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install:/home/milan/sim_ws/install:/home/milan/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'milan'), ('JOURNAL_STREAM', '8:1827'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'milan'), ('TERM', 'xterm-256color'), ('RMW_IMPLEMENTAION', 'rmw_cyclonedds_cpp'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/milan/sim_ws/.venv/bin:/opt/ros/humble/bin:/home/milan/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/milan-ROG-Zephyrus-G14-GA403UV-GA403UV:@/tmp/.ICE-unix/2204,unix/milan-ROG-Zephyrus-G14-GA403UV-GA403UV:/tmp/.ICE-unix/2204'), ('INVOCATION_ID', '0d8cab0bc6934c36ba9e9b0e56f8b2e0'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('VIRTUAL_ENV_PROMPT', '(.venv)'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc:/home/milan/sim_ws/install/f1tenth_gym_ros:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:2a1ce8e4-6e42-43c8-a975-610696928596'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('VIRTUAL_ENV', '/home/milan/sim_ws/.venv'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc'), ('TURTLEBOT3_MODEL', 'waffle'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages:/home/milan/sim_ws/install/f1tenth_gym_ros/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc:/usr/local::/home/milan/sim_ws/install/f1tenth_gym_ros:/opt/ros/humble')]), 'shell': False}
+[9.395545] (mpc) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[9.395799] (mpc) StdoutLine: {'line': b'-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/mpc_node\n'}
+[9.401117] (mpc) StdoutLine: {'line': b'-- Set runtime path of "/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/mpc_node" to ""\n'}
+[9.401296] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/pythonpath.sh\n'}
+[9.401344] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/pythonpath.dsv\n'}
+[9.401420] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info\n'}
+[9.401467] (mpc) StdoutLine: {'line': b'-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[9.401500] (mpc) StdoutLine: {'line': b'-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[9.401534] (mpc) StdoutLine: {'line': b'-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[9.401577] (mpc) StdoutLine: {'line': b'-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[9.401659] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc\n'}
+[9.401702] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc/__init__.py\n'}
+[9.431073] (-) TimerEvent: {}
+[9.431744] (mpc) StdoutLine: {'line': b"Listing '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc'...\n"}
+[9.437434] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/mpc_node.py\n'}
+[9.437685] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/utils.py\n'}
+[9.437880] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/package_run_dependencies/mpc\n'}
+[9.437970] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/parent_prefix_path/mpc\n'}
+[9.438036] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/ament_prefix_path.sh\n'}
+[9.438099] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/ament_prefix_path.dsv\n'}
+[9.438200] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/path.sh\n'}
+[9.438237] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/path.dsv\n'}
+[9.438268] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.bash\n'}
+[9.438308] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.sh\n'}
+[9.438371] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.zsh\n'}
+[9.438430] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.dsv\n'}
+[9.438487] (mpc) StdoutLine: {'line': b'-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/package.dsv\n'}
+[9.438542] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/packages/mpc\n'}
+[9.438600] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/cmake/mpcConfig.cmake\n'}
+[9.438696] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/cmake/mpcConfig-version.cmake\n'}
+[9.438753] (mpc) StdoutLine: {'line': b'-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/package.xml\n'}
+[9.440540] (mpc) CommandEnded: {'returncode': 0}
+[9.456636] (mpc) JobEnded: {'identifier': 'mpc', 'rc': 0}
+[9.457555] (-) EventReactorShutdown: {}

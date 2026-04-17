@@ -1,18 +1,36 @@
 /**
- * MPC Node for F1Tenth
+ * MPC Node for F1Tenth — C++ / OSQP-Eigen
+ * =========================================
+ * Subscribes:  /ego_racecar/odom
+ * Publishes:   /drive
  *
- * Implement Kinematic MPC on the car.
- * This is just a template, you are free to implement your own node!
+ * QP form: min (1/2) z'Pz + q'z   s.t. l <= Az <= u
+ * Decision variables: z = [x_0,...,x_T, u_0,...,u_{T-1}]
+ *   x_t = [x, y, v, yaw]    (NX=4)
+ *   u_t = [accel, steer]    (NU=2)
+ *
+ * P, A sparsity pattern built ONCE in mpc_prob_init().
+ * Each iteration updates:
+ *   - A dynamics rows  (new A_block, B_block from linearization)
+ *   - l, u bounds      (C term + x0)
+ *   - q gradient       (reference trajectory)
  */
 
+#include <fstream>
+#include <sstream>
+#include <string>
 #include <vector>
+#include <cmath>
+#include <tuple>
+#include <algorithm>
+
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
 #include <OsqpEigen/OsqpEigen.h>
 
 #include "ackermann_msgs/msg/ackermann_drive_stamped.hpp"
-#include "geometry_msgs/msg/pose_stamped.hpp"
 #include "nav_msgs/msg/odometry.hpp"
+#include "visualization_msgs/msg/marker_array.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 #include "mpc/mpc_utils.hpp"
@@ -22,80 +40,21 @@ using namespace mpc;
 class MPC : public rclcpp::Node {
 public:
     MPC() : Node("mpc_node") {
-        // TODO: create ROS subscribers and publishers
-        //       use the MPC as a tracker (similar to pure pursuit)
+        auto wp = this->declare_parameter<std::string>("waypoints_file", "waypoints.csv");
+        load_waypoints(wp);
 
-        // TODO: get waypoints here
-        waypoints_ = Eigen::MatrixXd();  // Should be (4 x N) matrix: [x; y; yaw; v]
+        odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
+            "/ego_racecar/odom", 10,
+            std::bind(&MPC::odom_callback, this, std::placeholders::_1));
+        drive_pub_ = this->create_publisher<
+            ackermann_msgs::msg::AckermannDriveStamped>("/drive", 10);
+        viz_pub_ = this->create_publisher<
+            visualization_msgs::msg::MarkerArray>("/mpc_pred_traj", 10);
 
         config_ = Config();
-        odelta_v_ = std::vector<double>();
-        oa_ = std::vector<double>();
+        oa_.assign(config_.TK, 0.0);
+        odelta_.assign(config_.TK, 0.0);
 
-        // Initialize MPC problem
-        mpc_prob_init();
-
-        RCLCPP_INFO(get_logger(), "MPC Node initialized");
-    }
-
-private:
-    void odom_callback(const nav_msgs::msg::Odometry::SharedPtr odom_msg) {
-        (void)odom_msg;  // Suppress unused warning
-
-        // TODO: extract pose from ROS msg
-        State vehicle_state;
-
-        // TODO: Calculate the next reference trajectory for the next T steps
-        //       with current vehicle pose.
-        //       ref_x, ref_y, ref_yaw, ref_v are columns of waypoints_
-        Eigen::MatrixXd ref_path;  // = calc_ref_trajectory(vehicle_state, ...)
-
-        Eigen::Vector4d x0;
-        x0 << vehicle_state.x, vehicle_state.y, vehicle_state.v, vehicle_state.yaw;
-
-        // TODO: solve the MPC control problem
-        Eigen::VectorXd ox, oy, ov, oyaw;
-        Eigen::MatrixXd state_predict;
-        // std::tie(oa_, odelta_v_, ox, oy, oyaw, ov, state_predict) =
-        //     linear_mpc_control(ref_path, x0, oa_, odelta_v_);
-
-        // TODO: publish drive message
-        double steer_output = 0.0;  // = odelta_v_[0];
-        double speed_output = 0.0;  // = vehicle_state.v + oa_[0] * config_.DTK;
-        (void)steer_output;
-        (void)speed_output;
-    }
-
-    /**
-     * Create MPC quadratic optimization problem using OSQP-Eigen
-     * Will be solved every iteration for control.
-     *
-     * More MPC problem information here: https://osqp.org/docs/examples/mpc.html
-     *
-     * The QP has the form:
-     *   min  (1/2) z'Pz + q'z
-     *   s.t. l <= Az <= u
-     *
-     * Decision variables: z = [x_0, x_1, ..., x_T, u_0, u_1, ..., u_{T-1}]
-     * where x_t = [x, y, v, yaw] and u_t = [accel, steer]
-     */
-    void mpc_prob_init() {
-        int n_vars = numVars(config_.TK);
-
-        // Initialize decision variable vectors for warm starting
-        // Vehicle State: x = [x, y, v, yaw] for T+1 timesteps
-        xk_ = Eigen::MatrixXd::Zero(config_.NXK, config_.TK + 1);
-        // Control Input: u = [accel, steer] for T timesteps
-        uk_ = Eigen::MatrixXd::Zero(config_.NU, config_.TK);
-
-        // Reference trajectory parameter (to be updated each solve)
-        ref_traj_k_ = Eigen::MatrixXd::Zero(config_.NXK, config_.TK + 1);
-
-        // Initial state parameter (to be updated each solve)
-        x0k_ = Eigen::Vector4d::Zero();
-
-        // Initialize linearized dynamics matrices (will be updated each solve)
-        // These form block diagonal matrices for the full horizon
         A_block_.resize(config_.TK);
         B_block_.resize(config_.TK);
         C_block_.resize(config_.TK);
@@ -105,78 +64,244 @@ private:
             C_block_[t] = Eigen::Vector4d::Zero();
         }
 
-        // --------------------------------------------------------
-        // Build the Hessian matrix P (quadratic cost)
-        // This encodes the objective function and stays constant
-        // --------------------------------------------------------
+        mpc_prob_init();
+        RCLCPP_INFO(get_logger(), "MPC node ready (C++/OSQP-Eigen)");
+    }
 
-        // TODO: Objective part 1: Influence of the control inputs
-        //       Inputs u multiplied by the penalty Rk
-        //       This adds u_t' * Rk * u_t for each timestep
+private:
+    Config config_;
+    Eigen::MatrixXd waypoints_;          // (4 x N): [x; y; v; yaw]
+    std::vector<double> oa_, odelta_;    // warm-start buffers
 
-        // TODO: Objective part 2: Deviation of the vehicle from reference trajectory
-        //       States weighted by Qk, final timestep T weighted by Qfk
-        //       This adds (x_t - x_ref)' * Qk * (x_t - x_ref)
+    std::vector<Eigen::Matrix4d>               A_block_;
+    std::vector<Eigen::Matrix<double, NX, NU>> B_block_;
+    std::vector<Eigen::Vector4d>               C_block_;
 
-        // TODO: Objective part 3: Difference from one control input to the next
-        //       Weighted by Rdk to penalize jerky inputs
-        //       This adds (u_{t+1} - u_t)' * Rdk * (u_{t+1} - u_t)
+    Eigen::SparseMatrix<double> P_, A_;
+    Eigen::VectorXd l_, u_, q_;
+    OsqpEigen::Solver solver_;
 
-        // Build Hessian from the above objectives
-        std::vector<Eigen::Triplet<double>> P_triplets;
-        // ... add triplets for objectives above ...
-        P_.resize(n_vars, n_vars);
-        P_.setFromTriplets(P_triplets.begin(), P_triplets.end());
+    // Row offsets in constraint matrix A (set in init)
+    int row_x0_, row_dyn_, row_ubnd_, row_vbnd_, row_dsteer_;
+    int n_constraints_;
 
-        // --------------------------------------------------------
-        // Build the constraint matrix structure A
-        // Constraints: dynamics, bounds, rate limits
-        // --------------------------------------------------------
+    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
+    rclcpp::Publisher<ackermann_msgs::msg::AckermannDriveStamped>::SharedPtr drive_pub_;
+    rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr viz_pub_;
 
-        // Count total constraints to size the matrix
-        int n_constraints = 0;
-        // Dynamics: NX constraints per timestep, TK timesteps
-        n_constraints += config_.NXK * config_.TK;
-        // Initial state: NX constraints
-        n_constraints += config_.NXK;
-        // TODO: add counts for your bound constraints
+    // ─────────────────────────────────────────────────────────────────────────
+    void load_waypoints(const std::string& path) {
+        std::ifstream f(path);
+        if (!f.is_open()) {
+            RCLCPP_FATAL(get_logger(), "Cannot open waypoints: %s", path.c_str());
+            rclcpp::shutdown(); return;
+        }
+        std::vector<double> xs, ys, yaws;
+        std::string line;
+        while (std::getline(f, line)) {
+            if (line.empty() || line[0] == '#') continue;
+            std::stringstream ss(line); std::string tok;
+            std::getline(ss, tok, ','); xs.push_back(std::stod(tok));
+            std::getline(ss, tok, ','); ys.push_back(std::stod(tok));
+            std::getline(ss, tok, ','); yaws.push_back(std::stod(tok));
+        }
+        int n = static_cast<int>(xs.size());
+        waypoints_.resize(4, n);
+        for (int i = 0; i < n; ++i) {
+            waypoints_(0, i) = xs[i];
+            waypoints_(1, i) = ys[i];
+            waypoints_(2, i) = 2.0;       // constant reference speed
+            waypoints_(3, i) = yaws[i];
+        }
+        RCLCPP_INFO(get_logger(), "Loaded %d waypoints", n);
+    }
 
-        // TODO: Constraint part 1: Dynamics constraints
-        //       x_{t+1} = A_t * x_t + B_t * u_t + C_t
-        //       Rearranged: x_{t+1} - A_t * x_t - B_t * u_t = C_t
+    // ─────────────────────────────────────────────────────────────────────────
+    Eigen::MatrixXd calc_ref_trajectory(const State& s) {
+        return calcInterpolatedRefTrajectory(
+            s.x, s.y,
+            waypoints_.row(0).transpose(),
+            waypoints_.row(1).transpose(),
+            waypoints_.row(2).transpose(),
+            waypoints_.row(3).transpose(),
+            config_.DTK, config_.TK);
+    }
 
-        // TODO: Constraint part 2: Steering rate constraints
-        //       |u_{t+1}[STEER] - u_t[STEER]| <= MAX_DSTEER * DTK
+    Eigen::MatrixXd predict_motion(const Eigen::Vector4d& x0,
+                                   const std::vector<double>& oa,
+                                   const std::vector<double>& od) {
+        int T = config_.TK;
+        Eigen::MatrixXd p(NX, T + 1);
+        p.col(0) = x0;
+        State s; s.x=x0(X); s.y=x0(Y); s.v=x0(V); s.yaw=x0(YAW);
+        for (int t = 0; t < T; ++t) {
+            s = updateState(s, oa[t], od[t], config_);
+            p(X,t+1)=s.x; p(Y,t+1)=s.y; p(V,t+1)=s.v; p(YAW,t+1)=s.yaw;
+        }
+        return p;
+    }
 
-        // TODO: Constraint part 3: State and input bounds
-        //       MIN_SPEED <= v <= MAX_SPEED
-        //       -MAX_ACCEL <= accel <= MAX_ACCEL
-        //       MIN_STEER <= steer <= MAX_STEER
+    // ─────────────────────────────────────────────────────────────────────────
+    // Build sparse A from current A_block_, B_block_
+    // ─────────────────────────────────────────────────────────────────────────
+    void build_A_matrix() {
+        const int T = config_.TK;
+        const int n = numVars(T);
+        std::vector<Eigen::Triplet<double>> tri;
+        tri.reserve(n_constraints_ * 5);
 
-        // TODO: Initial state constraint
-        //       x_0 = x0k_
+        // ── Part 0: Initial state  x_0 = x0  (equality)
+        for (int i = 0; i < NX; ++i)
+            tri.push_back({row_x0_ + i, stateIdx(0, i, T), 1.0});
 
-        std::vector<Eigen::Triplet<double>> A_triplets;
-        // ... add triplets for constraints above ...
-        A_.resize(n_constraints, n_vars);
-        A_.setFromTriplets(A_triplets.begin(), A_triplets.end());
+        // ── Part 1: Dynamics  x_{t+1} - A_t x_t - B_t u_t = C_t  (equality)
+        for (int t = 0; t < T; ++t) {
+            int rb = row_dyn_ + t * NX;
+            for (int i = 0; i < NX; ++i) {
+                tri.push_back({rb + i, stateIdx(t+1, i, T), 1.0});         // +I
+                for (int j = 0; j < NX; ++j) {
+                    double v = -A_block_[t](i, j);
+                    if (std::abs(v) > 1e-12)
+                        tri.push_back({rb + i, stateIdx(t, j, T), v});     // -A_t
+                }
+                for (int j = 0; j < NU; ++j) {
+                    double v = -B_block_[t](i, j);
+                    if (std::abs(v) > 1e-12)
+                        tri.push_back({rb + i, inputIdx(t, j, T), v});     // -B_t
+                }
+            }
+        }
 
-        // Initialize bound vectors
-        l_ = Eigen::VectorXd::Zero(n_constraints);
-        u_ = Eigen::VectorXd::Zero(n_constraints);
+        // ── Part 2: Input bounds (one row per input component per timestep)
+        for (int t = 0; t < T; ++t)
+            for (int j = 0; j < NU; ++j)
+                tri.push_back({row_ubnd_ + t*NU + j, inputIdx(t, j, T), 1.0});
 
-        // --------------------------------------------------------
-        // Initialize the OSQP solver
-        // --------------------------------------------------------
+        // ── Part 3: Speed bound on v component of each state
+        for (int t = 0; t <= T; ++t)
+            tri.push_back({row_vbnd_ + t, stateIdx(t, V, T), 1.0});
+
+        // ── Part 4: Steering rate  |steer_{t+1} - steer_t| <= max_ddelta
+        for (int t = 0; t < T - 1; ++t) {
+            tri.push_back({row_dsteer_ + t, inputIdx(t+1, STEER, T),  1.0});
+            tri.push_back({row_dsteer_ + t, inputIdx(t,   STEER, T), -1.0});
+        }
+
+        A_.resize(n_constraints_, n);
+        A_.setFromTriplets(tri.begin(), tri.end());
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Build QP once: P (Hessian), A structure, static bounds
+    // ─────────────────────────────────────────────────────────────────────────
+    void mpc_prob_init() {
+        const int T = config_.TK;
+        const int n = numVars(T);  // (T+1)*NX + T*NU
+
+        // ── Row layout ───────────────────────────────────────────────────────
+        row_x0_     = 0;
+        row_dyn_    = row_x0_     + NX;
+        row_ubnd_   = row_dyn_    + T * NX;
+        row_vbnd_   = row_ubnd_   + T * NU;
+        row_dsteer_ = row_vbnd_   + (T + 1);
+        n_constraints_ = row_dsteer_ + (T - 1);
+
+        // ════════════════════════════════════════════════════════════════════
+        // HESSIAN P  (upper triangular)
+        // OSQP minimizes (1/2) z'Pz  → multiply quadratic coefficients by 2
+        // ════════════════════════════════════════════════════════════════════
+        std::vector<Eigen::Triplet<double>> Pt;
+        Pt.reserve(n * 2);
+
+        // ── Objective part 1: input cost  Σ u_t' Rk u_t ─────────────────
+        for (int t = 0; t < T; ++t)
+            for (int j = 0; j < NU; ++j) {
+                int idx = inputIdx(t, j, T);
+                Pt.push_back({idx, idx, 2.0 * config_.Rk(j, j)});
+            }
+
+        // ── Objective part 2: state tracking  Σ (z_t - z_ref_t)' Q (z_t - z_ref_t)
+        for (int t = 0; t < T; ++t)
+            for (int i = 0; i < NX; ++i) {
+                int idx = stateIdx(t, i, T);
+                Pt.push_back({idx, idx, 2.0 * config_.Qk(i, i)});
+            }
+        // Terminal term with Qfk
+        for (int i = 0; i < NX; ++i) {
+            int idx = stateIdx(T, i, T);
+            Pt.push_back({idx, idx, 2.0 * config_.Qfk(i, i)});
+        }
+
+        // ── Objective part 3: input rate cost  Σ (u_{t+1}-u_t)' Rdk (u_{t+1}-u_t)
+        // Diagonal contributions:
+        //   t=0 and t=T-1 appear in ONE difference term → factor 2
+        //   t=1..T-2 appear in TWO difference terms     → factor 4
+        // Off-diagonal (upper triangular): -2*Rdk between u_t and u_{t+1}
+        for (int t = 0; t < T; ++t) {
+            double df = (t == 0 || t == T-1) ? 2.0 : 4.0;
+            for (int j = 0; j < NU; ++j) {
+                int idx = inputIdx(t, j, T);
+                Pt.push_back({idx, idx, df * config_.Rdk(j, j)});
+            }
+            if (t < T - 1) {
+                for (int j = 0; j < NU; ++j) {
+                    int r = inputIdx(t,   j, T);
+                    int c = inputIdx(t+1, j, T);
+                    Pt.push_back({r, c, -2.0 * config_.Rdk(j, j)});  // upper triangle
+                }
+            }
+        }
+
+        P_.resize(n, n);
+        P_.setFromTriplets(Pt.begin(), Pt.end());
+
+        // ════════════════════════════════════════════════════════════════════
+        // CONSTRAINT MATRIX A  (initial build; dynamics updated each solve)
+        // ════════════════════════════════════════════════════════════════════
+        build_A_matrix();
+
+        // ════════════════════════════════════════════════════════════════════
+        // BOUNDS l, u
+        // Dynamic rows (x0, dynamics C) are set in mpc_prob_solve.
+        // Static rows (input/speed/rate bounds) set here.
+        // ════════════════════════════════════════════════════════════════════
+        l_ = Eigen::VectorXd::Constant(n_constraints_, -1e9);
+        u_ = Eigen::VectorXd::Constant(n_constraints_,  1e9);
+
+        // Input bounds
+        for (int t = 0; t < T; ++t) {
+            int r = row_ubnd_ + t * NU;
+            l_(r+ACCEL)=-config_.MAX_ACCEL; u_(r+ACCEL)= config_.MAX_ACCEL;
+            l_(r+STEER)= config_.MIN_STEER; u_(r+STEER)= config_.MAX_STEER;
+        }
+        // Speed bounds
+        for (int t = 0; t <= T; ++t) {
+            l_(row_vbnd_+t) = config_.MIN_SPEED;
+            u_(row_vbnd_+t) = config_.MAX_SPEED;
+        }
+        // Steering rate bounds
+        double max_dd = config_.MAX_DSTEER * config_.DTK;
+        for (int t = 0; t < T-1; ++t) {
+            l_(row_dsteer_+t) = -max_dd;
+            u_(row_dsteer_+t) =  max_dd;
+        }
+
+        // ════════════════════════════════════════════════════════════════════
+        // INITIALIZE OSQP
+        // ════════════════════════════════════════════════════════════════════
+        q_ = Eigen::VectorXd::Zero(n);
+
         solver_.settings()->setVerbosity(false);
         solver_.settings()->setWarmStart(true);
         solver_.settings()->setPolish(true);
+        solver_.settings()->setAbsoluteTolerance(1e-4);
+        solver_.settings()->setRelativeTolerance(1e-4);
+        solver_.settings()->setMaxIteration(5000);
 
-        solver_.data()->setNumberOfVariables(n_vars);
-        solver_.data()->setNumberOfConstraints(n_constraints);
+        solver_.data()->setNumberOfVariables(n);
+        solver_.data()->setNumberOfConstraints(n_constraints_);
         solver_.data()->setHessianMatrix(P_);
-        Eigen::VectorXd initial_grad = Eigen::VectorXd::Zero(n_vars);
-        solver_.data()->setGradient(initial_grad);
+        solver_.data()->setGradient(q_);
         solver_.data()->setLinearConstraintsMatrix(A_);
         solver_.data()->setLowerBound(l_);
         solver_.data()->setUpperBound(u_);
@@ -184,171 +309,160 @@ private:
         solver_.initSolver();
     }
 
-    /**
-     * Calculate interpolated reference trajectory for T steps.
-     *
-     * Uses proper linear interpolation between waypoints based on velocity
-     * propagation, rather than snapping to discrete waypoint indices.
-     */
-    Eigen::MatrixXd calc_ref_trajectory(const State& state,
-                                        const Eigen::VectorXd& cx,
-                                        const Eigen::VectorXd& cy,
-                                        const Eigen::VectorXd& cyaw,
-                                        const Eigen::VectorXd& sp) {
-        return calcInterpolatedRefTrajectory(
-            state.x, state.y,
-            cx, cy, sp, cyaw,
-            config_.DTK,
-            config_.TK
-        );
-    }
-
-    /**
-     * Predict vehicle motion for T steps using nonlinear model
-     */
-    Eigen::MatrixXd predict_motion(const Eigen::Vector4d& x0,
-                                   const std::vector<double>& oa,
-                                   const std::vector<double>& od) {
-        Eigen::MatrixXd path_predict = Eigen::MatrixXd::Zero(config_.NXK, config_.TK + 1);
-        path_predict.col(0) = x0;
-
-        State state;
-        state.x = x0(X);
-        state.y = x0(Y);
-        state.v = x0(V);
-        state.yaw = x0(YAW);
-
-        for (int t = 1; t <= config_.TK; ++t) {
-            state = updateState(state, oa[t-1], od[t-1], config_);
-            path_predict(X, t) = state.x;
-            path_predict(Y, t) = state.y;
-            path_predict(V, t) = state.v;
-            path_predict(YAW, t) = state.yaw;
-        }
-
-        return path_predict;
-    }
-
-    /**
-     * Solve the MPC optimization problem
-     */
-    std::tuple<bool, Eigen::VectorXd, Eigen::VectorXd, Eigen::VectorXd,
-               Eigen::VectorXd, Eigen::VectorXd>
+    // ─────────────────────────────────────────────────────────────────────────
+    // Per-iteration solve: update matrices and call OSQP
+    // ─────────────────────────────────────────────────────────────────────────
+    std::tuple<bool, Eigen::VectorXd, Eigen::VectorXd,
+               Eigen::VectorXd, Eigen::VectorXd, Eigen::VectorXd>
     mpc_prob_solve(const Eigen::MatrixXd& ref_traj,
                    const Eigen::MatrixXd& path_predict,
                    const Eigen::Vector4d& x0) {
-        // Update initial state
-        x0k_ = x0;
+        const int T = config_.TK;
 
-        // Update linearized dynamics matrices along predicted path
-        for (int t = 0; t < config_.TK; ++t) {
-            getLinearizedModel(path_predict(V, t), path_predict(YAW, t), 0.0,
-                              config_, A_block_[t], B_block_[t], C_block_[t]);
+        // ── 1. Recompute linearized dynamics along predicted path ─────────
+        for (int t = 0; t < T; ++t) {
+            getLinearizedModel(
+                path_predict(V,   t),
+                path_predict(YAW, t),
+                0.0,
+                config_,
+                A_block_[t], B_block_[t], C_block_[t]);
         }
 
-        // TODO: Update the constraint matrix A_ with new dynamics matrices
-        //       Use solver_.updateLinearConstraintsMatrix(A_);
+        // ── 2. Rebuild A with new dynamics and push to solver ─────────────
+        build_A_matrix();
+        solver_.updateLinearConstraintsMatrix(A_);
 
-        // TODO: Update the bounds l_ and u_ with:
-        //       - C vectors from dynamics
-        //       - Initial state x0
-        //       Use solver_.updateBounds(l_, u_);
+        // ── 3. Update bounds (initial state + dynamics C term) ─────────────
+        // Initial state: hard equality  x_0 = x0
+        for (int i = 0; i < NX; ++i) {
+            l_(row_x0_+i) = x0(i);
+            u_(row_x0_+i) = x0(i);
+        }
+        // Dynamics equality RHS = C_t
+        for (int t = 0; t < T; ++t)
+            for (int i = 0; i < NX; ++i) {
+                int row = row_dyn_ + t*NX + i;
+                l_(row) = C_block_[t](i);
+                u_(row) = C_block_[t](i);
+            }
+        solver_.updateBounds(l_, u_);
 
-        // Update gradient vector q (depends on reference trajectory)
-        Eigen::VectorXd q = Eigen::VectorXd::Zero(numVars(config_.TK));
-        // TODO: q = -2 * Q * x_ref for state tracking objective
-        solver_.updateGradient(q);
-
-        // Solve
+        // ── 4. Update gradient q = -2 Q x_ref (with yaw normalization) ──────
+        q_.setZero();
+        for (int t = 0; t < T; ++t) {
+            for (int i = 0; i < NX; ++i) {
+                double ref_val = ref_traj(i, t);
+                if (i == YAW) {
+                    double diff = ref_val - x0(YAW);
+                    while (diff >  M_PI) diff -= 2.0 * M_PI;
+                    while (diff < -M_PI) diff += 2.0 * M_PI;
+                    ref_val = x0(YAW) + diff;
+                }
+                q_(stateIdx(t, i, T)) = -2.0 * config_.Qk(i,i) * ref_val;
+            }
+        }
+        for (int i = 0; i < NX; ++i) {
+            double ref_val = ref_traj(i, T);
+            if (i == YAW) {
+                double diff = ref_val - x0(YAW);
+                while (diff >  M_PI) diff -= 2.0 * M_PI;
+                while (diff < -M_PI) diff += 2.0 * M_PI;
+                ref_val = x0(YAW) + diff;
+            }
+            q_(stateIdx(T, i, T)) = -2.0 * config_.Qfk(i,i) * ref_val;
+        }
+        solver_.updateGradient(q_);
+        
+        // ── 5. Solve ─────────────────────────────────────────────────────
         if (solver_.solveProblem() != OsqpEigen::ErrorExitFlag::NoError) {
-            return {false, {}, {}, {}, {}, {}};
+            RCLCPP_WARN(get_logger(), "OSQP solver failed");
+            return {false,{},{},{},{},{}};
         }
 
-        Eigen::VectorXd solution = solver_.getSolution();
+        Eigen::VectorXd sol = solver_.getSolution();
 
-        // Extract solution
-        Eigen::VectorXd ox(config_.TK + 1), oy(config_.TK + 1);
-        Eigen::VectorXd ov(config_.TK + 1), oyaw(config_.TK + 1);
-        Eigen::VectorXd oa(config_.TK), odelta(config_.TK);
-
-        for (int t = 0; t <= config_.TK; ++t) {
-            ox(t) = solution(stateIdx(t, X, config_.TK));
-            oy(t) = solution(stateIdx(t, Y, config_.TK));
-            ov(t) = solution(stateIdx(t, V, config_.TK));
-            oyaw(t) = solution(stateIdx(t, YAW, config_.TK));
+        Eigen::VectorXd oa(T), odelta(T), ox(T+1), oy(T+1), oyaw(T+1);
+        for (int t = 0; t <= T; ++t) {
+            ox(t)   = sol(stateIdx(t, X,   T));
+            oy(t)   = sol(stateIdx(t, Y,   T));
+            oyaw(t) = sol(stateIdx(t, YAW, T));
         }
-        for (int t = 0; t < config_.TK; ++t) {
-            oa(t) = solution(inputIdx(t, ACCEL, config_.TK));
-            odelta(t) = solution(inputIdx(t, STEER, config_.TK));
+        for (int t = 0; t < T; ++t) {
+            oa(t)     = sol(inputIdx(t, ACCEL, T));
+            odelta(t) = sol(inputIdx(t, STEER, T));
         }
-
         return {true, oa, odelta, ox, oy, oyaw};
     }
 
-    /**
-     * MPC control with updating operational point iteratively
-     */
+    // ─────────────────────────────────────────────────────────────────────────
     std::tuple<std::vector<double>, std::vector<double>,
-               Eigen::VectorXd, Eigen::VectorXd, Eigen::VectorXd, Eigen::VectorXd,
+               Eigen::VectorXd, Eigen::VectorXd, Eigen::VectorXd,
                Eigen::MatrixXd>
     linear_mpc_control(const Eigen::MatrixXd& ref_path,
                        const Eigen::Vector4d& x0,
-                       std::vector<double> oa,
-                       std::vector<double> od) {
+                       std::vector<double> oa, std::vector<double> od) {
         if (oa.empty()) oa.assign(config_.TK, 0.0);
         if (od.empty()) od.assign(config_.TK, 0.0);
 
-        // Predict motion for linearization points
-        Eigen::MatrixXd path_predict = predict_motion(x0, oa, od);
+        Eigen::MatrixXd pp = predict_motion(x0, oa, od);
+        auto [ok, ma, md, ox, oy, oyaw] = mpc_prob_solve(ref_path, pp, x0);
 
-        // Solve MPC
-        auto [success, mpc_a, mpc_delta, mpc_x, mpc_y, mpc_yaw] =
-            mpc_prob_solve(ref_path, path_predict, x0);
+        if (!ok) return {oa, od, {},{},{}, pp};
 
-        if (!success) {
-            return {{}, {}, {}, {}, {}, {}, path_predict};
-        }
-
-        std::vector<double> oa_out(mpc_a.data(), mpc_a.data() + mpc_a.size());
-        std::vector<double> od_out(mpc_delta.data(), mpc_delta.data() + mpc_delta.size());
-
-        return {oa_out, od_out, mpc_x, mpc_y, mpc_yaw,
-                Eigen::VectorXd(), path_predict};
+        std::vector<double> oa_out(ma.data(),     ma.data()     + ma.size());
+        std::vector<double> od_out(md.data(),     md.data()     + md.size());
+        return {oa_out, od_out, ox, oy, oyaw, pp};
     }
 
-    // Configuration
-    Config config_;
+    // ─────────────────────────────────────────────────────────────────────────
+    void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg) {
+        if (waypoints_.cols() == 0) return;
 
-    // Waypoints matrix: [x; y; yaw; v] as columns
-    Eigen::MatrixXd waypoints_;
+        double yaw = yawFromQuaternion(msg->pose.pose.orientation);
+        State s;
+        s.x   = msg->pose.pose.position.x;
+        s.y   = msg->pose.pose.position.y;
+        s.v   = std::hypot(msg->twist.twist.linear.x, msg->twist.twist.linear.y);
+        s.yaw = yaw;
 
-    // Previous control inputs for warm starting
-    std::vector<double> odelta_v_;
-    std::vector<double> oa_;
+        Eigen::MatrixXd ref = calc_ref_trajectory(s);
+        Eigen::Vector4d x0; x0 << s.x, s.y, s.v, s.yaw;
 
-    // MPC problem variables
-    Eigen::MatrixXd xk_;        // State trajectory
-    Eigen::MatrixXd uk_;        // Input trajectory
-    Eigen::MatrixXd ref_traj_k_;  // Reference trajectory
-    Eigen::Vector4d x0k_;       // Initial state
+        auto [new_oa, new_od, ox, oy, oyaw, _] =
+            linear_mpc_control(ref, x0, oa_, odelta_);
+        oa_ = new_oa; odelta_ = new_od;
 
-    // Linearized dynamics matrices
-    std::vector<Eigen::Matrix4d> A_block_;
-    std::vector<Eigen::Matrix<double, NX, NU>> B_block_;
-    std::vector<Eigen::Vector4d> C_block_;
+        double steer = odelta_.empty() ? 0.0 : odelta_[0];
+        double speed = oa_.empty() ? s.v
+            : std::clamp(s.v + oa_[0] * config_.DTK,
+                         config_.MIN_SPEED, config_.MAX_SPEED);
 
-    // QP matrices (sparse)
-    Eigen::SparseMatrix<double> P_;  // Hessian
-    Eigen::SparseMatrix<double> A_;  // Constraint matrix
-    Eigen::VectorXd l_, u_;          // Constraint bounds
+        ackermann_msgs::msg::AckermannDriveStamped drv;
+        drv.header.stamp = this->now();
+        drv.drive.steering_angle = steer;
+        drv.drive.speed = speed;
+        drive_pub_->publish(drv);
 
-    // OSQP solver (initialized once, updated each iteration)
-    OsqpEigen::Solver solver_;
+        if (ox.size() > 0) publish_viz(ox, oy);
+    }
 
-    // ROS interfaces
-    rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr pose_sub_;
-    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
-    rclcpp::Publisher<ackermann_msgs::msg::AckermannDriveStamped>::SharedPtr drive_pub_;
+    void publish_viz(const Eigen::VectorXd& ox, const Eigen::VectorXd& oy) {
+        visualization_msgs::msg::MarkerArray ma;
+        for (int i = 0; i < ox.size(); ++i) {
+            visualization_msgs::msg::Marker m;
+            m.header.frame_id = "map"; m.header.stamp = this->now();
+            m.ns = "pred"; m.id = i;
+            m.type = visualization_msgs::msg::Marker::SPHERE;
+            m.action = visualization_msgs::msg::Marker::ADD;
+            m.pose.position.x = ox(i); m.pose.position.y = oy(i);
+            m.pose.position.z = 0.05;
+            m.scale.x = m.scale.y = m.scale.z = 0.1;
+            m.color.r=0.0; m.color.g=1.0; m.color.b=0.5; m.color.a=0.9;
+            ma.markers.push_back(m);
+        }
+        viz_pub_->publish(ma);
+    }
 };
 
 int main(int argc, char** argv) {

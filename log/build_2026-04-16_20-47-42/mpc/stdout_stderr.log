@@ -1,0 +1,39 @@
+[100%] Built target mpc_node
+[100%] Built target ament_cmake_python_copy_mpc_setup
+[100%] Built target ament_cmake_python_copy_mpc
+running egg_info
+writing mpc.egg-info/PKG-INFO
+writing dependency_links to mpc.egg-info/dependency_links.txt
+writing top-level names to mpc.egg-info/top_level.txt
+reading manifest file 'mpc.egg-info/SOURCES.txt'
+writing manifest file 'mpc.egg-info/SOURCES.txt'
+[100%] Built target ament_cmake_python_build_mpc_egg
+-- Install configuration: ""
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/mpc_node
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/pythonpath.sh
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/pythonpath.dsv
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info
+-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/PKG-INFO
+-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/dependency_links.txt
+-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/SOURCES.txt
+-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/top_level.txt
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc/__init__.py
+Listing '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc'...
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/mpc_node.py
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/utils.py
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/package_run_dependencies/mpc
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/parent_prefix_path/mpc
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/ament_prefix_path.sh
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/path.sh
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/path.dsv
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.bash
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.sh
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.zsh
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.dsv
+-- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/package.dsv
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/packages/mpc
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/cmake/mpcConfig.cmake
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/cmake/mpcConfig-version.cmake
+-- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/package.xml

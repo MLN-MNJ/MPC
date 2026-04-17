@@ -1,0 +1,106 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-c158701cbec17193eb1e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "mpc",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_mpc_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_mpc_egg-69f447435f264b804edb.json",
+					"name" : "ament_cmake_python_build_mpc_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_mpc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_mpc-543f7b0022ae4f26f15c.json",
+					"name" : "ament_cmake_python_copy_mpc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_mpc_setup::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_mpc_setup-042d008ae9f855c8b3d9.json",
+					"name" : "ament_cmake_python_copy_mpc_setup",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mpc_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mpc_node-a686d3812c4b3e899d4a.json",
+					"name" : "mpc_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mpc_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mpc_uninstall-ad149c4834b156072fa9.json",
+					"name" : "mpc_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-c6c0f45585a484b7a47a.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc",
+		"source" : "/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/mpc"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

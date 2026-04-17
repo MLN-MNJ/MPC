@@ -1,0 +1,46 @@
+[0.010s] Invoking command in '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/milan/sim_ws/install/f1tenth_gym_ros:/opt/ros/humble PS1=(.venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake --build /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc -- -j16 -l16
+[0.059s] [ 50%] [32mBuilding CXX object CMakeFiles/mpc_node.dir/src/mpc_node.cpp.o[0m
+[0.060s] [ 50%] Built target ament_cmake_python_copy_mpc
+[0.060s] [ 50%] Built target ament_cmake_python_copy_mpc_setup
+[0.231s] running egg_info
+[0.232s] writing mpc.egg-info/PKG-INFO
+[0.232s] writing dependency_links to mpc.egg-info/dependency_links.txt
+[0.232s] writing top-level names to mpc.egg-info/top_level.txt
+[0.234s] reading manifest file 'mpc.egg-info/SOURCES.txt'
+[0.234s] writing manifest file 'mpc.egg-info/SOURCES.txt'
+[0.264s] [ 50%] Built target ament_cmake_python_build_mpc_egg
+[8.933s] [100%] [32m[1mLinking CXX executable mpc_node[0m
+[9.364s] [100%] Built target mpc_node
+[9.377s] Invoked command in '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/milan/sim_ws/install/f1tenth_gym_ros:/opt/ros/humble PS1=(.venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake --build /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc -- -j16 -l16
+[9.387s] Invoking command in '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/milan/sim_ws/install/f1tenth_gym_ros:/opt/ros/humble PS1=(.venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake --install /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc
+[9.395s] -- Install configuration: ""
+[9.395s] -- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/mpc_node
+[9.401s] -- Set runtime path of "/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/mpc_node" to ""
+[9.401s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/pythonpath.sh
+[9.401s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/pythonpath.dsv
+[9.401s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info
+[9.401s] -- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/PKG-INFO
+[9.401s] -- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/dependency_links.txt
+[9.401s] -- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/SOURCES.txt
+[9.401s] -- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc-0.0.0-py3.10.egg-info/top_level.txt
+[9.401s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc
+[9.401s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc/__init__.py
+[9.431s] Listing '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/python3.10/site-packages/mpc'...
+[9.437s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/mpc_node.py
+[9.437s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/lib/mpc/utils.py
+[9.437s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/package_run_dependencies/mpc
+[9.437s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/parent_prefix_path/mpc
+[9.437s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/ament_prefix_path.sh
+[9.437s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/ament_prefix_path.dsv
+[9.437s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/path.sh
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/environment/path.dsv
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.bash
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.sh
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.zsh
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/local_setup.dsv
+[9.438s] -- Installing: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/package.dsv
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/ament_index/resource_index/packages/mpc
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/cmake/mpcConfig.cmake
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/cmake/mpcConfig-version.cmake
+[9.438s] -- Up-to-date: /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/install/mpc/share/mpc/package.xml
+[9.440s] Invoked command in '/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/milan/sim_ws/install/f1tenth_gym_ros:/opt/ros/humble PS1=(.venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/cmake --install /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc

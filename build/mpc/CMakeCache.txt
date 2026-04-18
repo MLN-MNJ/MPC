@@ -280,6 +280,9 @@ TinyXML2_DIR:PATH=TinyXML2_DIR-NOTFOUND
 //Path to a library.
 _lib:FILEPATH=/opt/ros/humble/lib/libtf2_msgs__rosidl_typesupport_fastrtps_cpp.so
 
+//Dependencies for the target
+acados_racing_solver_LIB_DEPENDS:STATIC=general;/home/milan/acados/lib/libacados.so;general;/home/milan/acados/lib/libblasfeo.so;general;/home/milan/acados/lib/libhpipm.so;
+
 //The directory containing a CMake configuration file for ackermann_msgs.
 ackermann_msgs_DIR:PATH=/opt/ros/humble/share/ackermann_msgs/cmake
 

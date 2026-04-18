@@ -64,6 +64,8 @@ CMAKE_BINARY_DIR = /home/milan/roboracer_ws/src/lab-8-model-predictive-control-t
 
 # The main recursive "all" target.
 all: CMakeFiles/mpc_node.dir/all
+all: CMakeFiles/acados_racing_solver.dir/all
+all: CMakeFiles/racing_mpc_node.dir/all
 all: CMakeFiles/ament_cmake_python_build_mpc_egg.dir/all
 .PHONY : all
 
@@ -75,6 +77,8 @@ preinstall:
 clean: CMakeFiles/uninstall.dir/clean
 clean: CMakeFiles/mpc_uninstall.dir/clean
 clean: CMakeFiles/mpc_node.dir/clean
+clean: CMakeFiles/acados_racing_solver.dir/clean
+clean: CMakeFiles/racing_mpc_node.dir/clean
 clean: CMakeFiles/ament_cmake_python_copy_mpc.dir/clean
 clean: CMakeFiles/ament_cmake_python_copy_mpc_setup.dir/clean
 clean: CMakeFiles/ament_cmake_python_build_mpc_egg.dir/clean
@@ -139,7 +143,7 @@ CMakeFiles/mpc_uninstall.dir/clean:
 CMakeFiles/mpc_node.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc_node.dir/build.make CMakeFiles/mpc_node.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc_node.dir/build.make CMakeFiles/mpc_node.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles --progress-num=1,2 "Built target mpc_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles --progress-num=18,19 "Built target mpc_node"
 .PHONY : CMakeFiles/mpc_node.dir/all
 
 # Build rule for subdir invocation for target.
@@ -157,6 +161,58 @@ mpc_node: CMakeFiles/mpc_node.dir/rule
 CMakeFiles/mpc_node.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc_node.dir/build.make CMakeFiles/mpc_node.dir/clean
 .PHONY : CMakeFiles/mpc_node.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/acados_racing_solver.dir
+
+# All Build rule for target.
+CMakeFiles/acados_racing_solver.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target acados_racing_solver"
+.PHONY : CMakeFiles/acados_racing_solver.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/acados_racing_solver.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles 17
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/acados_racing_solver.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles 0
+.PHONY : CMakeFiles/acados_racing_solver.dir/rule
+
+# Convenience name for target.
+acados_racing_solver: CMakeFiles/acados_racing_solver.dir/rule
+.PHONY : acados_racing_solver
+
+# clean rule for target.
+CMakeFiles/acados_racing_solver.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/clean
+.PHONY : CMakeFiles/acados_racing_solver.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/racing_mpc_node.dir
+
+# All Build rule for target.
+CMakeFiles/racing_mpc_node.dir/all: CMakeFiles/acados_racing_solver.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/racing_mpc_node.dir/build.make CMakeFiles/racing_mpc_node.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/racing_mpc_node.dir/build.make CMakeFiles/racing_mpc_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles --progress-num=20,21 "Built target racing_mpc_node"
+.PHONY : CMakeFiles/racing_mpc_node.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/racing_mpc_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles 19
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/racing_mpc_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles 0
+.PHONY : CMakeFiles/racing_mpc_node.dir/rule
+
+# Convenience name for target.
+racing_mpc_node: CMakeFiles/racing_mpc_node.dir/rule
+.PHONY : racing_mpc_node
+
+# clean rule for target.
+CMakeFiles/racing_mpc_node.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/racing_mpc_node.dir/build.make CMakeFiles/racing_mpc_node.dir/clean
+.PHONY : CMakeFiles/racing_mpc_node.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/ament_cmake_python_copy_mpc.dir

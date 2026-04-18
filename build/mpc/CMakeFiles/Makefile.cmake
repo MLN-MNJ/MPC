@@ -973,6 +973,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/uninstall.dir/DependInfo.cmake"
   "CMakeFiles/mpc_uninstall.dir/DependInfo.cmake"
   "CMakeFiles/mpc_node.dir/DependInfo.cmake"
+  "CMakeFiles/acados_racing_solver.dir/DependInfo.cmake"
+  "CMakeFiles/racing_mpc_node.dir/DependInfo.cmake"
   "CMakeFiles/ament_cmake_python_copy_mpc.dir/DependInfo.cmake"
   "CMakeFiles/ament_cmake_python_copy_mpc_setup.dir/DependInfo.cmake"
   "CMakeFiles/ament_cmake_python_build_mpc_egg.dir/DependInfo.cmake"

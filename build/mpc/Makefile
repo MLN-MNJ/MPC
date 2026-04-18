@@ -211,6 +211,32 @@ mpc_node/fast:
 .PHONY : mpc_node/fast
 
 #=============================================================================
+# Target rules for targets named acados_racing_solver
+
+# Build rule for target.
+acados_racing_solver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 acados_racing_solver
+.PHONY : acados_racing_solver
+
+# fast build rule for target.
+acados_racing_solver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/build
+.PHONY : acados_racing_solver/fast
+
+#=============================================================================
+# Target rules for targets named racing_mpc_node
+
+# Build rule for target.
+racing_mpc_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 racing_mpc_node
+.PHONY : racing_mpc_node
+
+# fast build rule for target.
+racing_mpc_node/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/racing_mpc_node.dir/build.make CMakeFiles/racing_mpc_node.dir/build
+.PHONY : racing_mpc_node/fast
+
+#=============================================================================
 # Target rules for targets named ament_cmake_python_copy_mpc
 
 # Build rule for target.
@@ -249,6 +275,390 @@ ament_cmake_python_build_mpc_egg/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_build_mpc_egg.dir/build.make CMakeFiles/ament_cmake_python_build_mpc_egg.dir/build
 .PHONY : ament_cmake_python_build_mpc_egg/fast
 
+c_generated_code/acados_sim_solver_f1tenth_racing.o: c_generated_code/acados_sim_solver_f1tenth_racing.c.o
+.PHONY : c_generated_code/acados_sim_solver_f1tenth_racing.o
+
+# target to build an object file
+c_generated_code/acados_sim_solver_f1tenth_racing.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/acados_sim_solver_f1tenth_racing.c.o
+.PHONY : c_generated_code/acados_sim_solver_f1tenth_racing.c.o
+
+c_generated_code/acados_sim_solver_f1tenth_racing.i: c_generated_code/acados_sim_solver_f1tenth_racing.c.i
+.PHONY : c_generated_code/acados_sim_solver_f1tenth_racing.i
+
+# target to preprocess a source file
+c_generated_code/acados_sim_solver_f1tenth_racing.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/acados_sim_solver_f1tenth_racing.c.i
+.PHONY : c_generated_code/acados_sim_solver_f1tenth_racing.c.i
+
+c_generated_code/acados_sim_solver_f1tenth_racing.s: c_generated_code/acados_sim_solver_f1tenth_racing.c.s
+.PHONY : c_generated_code/acados_sim_solver_f1tenth_racing.s
+
+# target to generate assembly for a file
+c_generated_code/acados_sim_solver_f1tenth_racing.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/acados_sim_solver_f1tenth_racing.c.s
+.PHONY : c_generated_code/acados_sim_solver_f1tenth_racing.c.s
+
+c_generated_code/acados_solver_f1tenth_racing.o: c_generated_code/acados_solver_f1tenth_racing.c.o
+.PHONY : c_generated_code/acados_solver_f1tenth_racing.o
+
+# target to build an object file
+c_generated_code/acados_solver_f1tenth_racing.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/acados_solver_f1tenth_racing.c.o
+.PHONY : c_generated_code/acados_solver_f1tenth_racing.c.o
+
+c_generated_code/acados_solver_f1tenth_racing.i: c_generated_code/acados_solver_f1tenth_racing.c.i
+.PHONY : c_generated_code/acados_solver_f1tenth_racing.i
+
+# target to preprocess a source file
+c_generated_code/acados_solver_f1tenth_racing.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/acados_solver_f1tenth_racing.c.i
+.PHONY : c_generated_code/acados_solver_f1tenth_racing.c.i
+
+c_generated_code/acados_solver_f1tenth_racing.s: c_generated_code/acados_solver_f1tenth_racing.c.s
+.PHONY : c_generated_code/acados_solver_f1tenth_racing.s
+
+# target to generate assembly for a file
+c_generated_code/acados_solver_f1tenth_racing.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/acados_solver_f1tenth_racing.c.s
+.PHONY : c_generated_code/acados_solver_f1tenth_racing.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.c.s
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.o: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.o
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.o
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.i: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.i
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.i
+
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.s: c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.s
+.PHONY : c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.c.s
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.o: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.o
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.o
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.o
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.i: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.i
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.i
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.i
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.s: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.s
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.s
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.c.s
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.o: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.o
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.o
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.o
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.i: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.i
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.i
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.i
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.s: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.s
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.s
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.c.s
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.o: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.o
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.o
+
+# target to build an object file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.o
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.o
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.i: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.i
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.i
+
+# target to preprocess a source file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.i
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.i
+
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.s: c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.s
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.s
+
+# target to generate assembly for a file
+c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.s
+.PHONY : c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.c.s
+
+c_generated_code/main_f1tenth_racing.o: c_generated_code/main_f1tenth_racing.c.o
+.PHONY : c_generated_code/main_f1tenth_racing.o
+
+# target to build an object file
+c_generated_code/main_f1tenth_racing.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/main_f1tenth_racing.c.o
+.PHONY : c_generated_code/main_f1tenth_racing.c.o
+
+c_generated_code/main_f1tenth_racing.i: c_generated_code/main_f1tenth_racing.c.i
+.PHONY : c_generated_code/main_f1tenth_racing.i
+
+# target to preprocess a source file
+c_generated_code/main_f1tenth_racing.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/main_f1tenth_racing.c.i
+.PHONY : c_generated_code/main_f1tenth_racing.c.i
+
+c_generated_code/main_f1tenth_racing.s: c_generated_code/main_f1tenth_racing.c.s
+.PHONY : c_generated_code/main_f1tenth_racing.s
+
+# target to generate assembly for a file
+c_generated_code/main_f1tenth_racing.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/main_f1tenth_racing.c.s
+.PHONY : c_generated_code/main_f1tenth_racing.c.s
+
+c_generated_code/main_sim_f1tenth_racing.o: c_generated_code/main_sim_f1tenth_racing.c.o
+.PHONY : c_generated_code/main_sim_f1tenth_racing.o
+
+# target to build an object file
+c_generated_code/main_sim_f1tenth_racing.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/main_sim_f1tenth_racing.c.o
+.PHONY : c_generated_code/main_sim_f1tenth_racing.c.o
+
+c_generated_code/main_sim_f1tenth_racing.i: c_generated_code/main_sim_f1tenth_racing.c.i
+.PHONY : c_generated_code/main_sim_f1tenth_racing.i
+
+# target to preprocess a source file
+c_generated_code/main_sim_f1tenth_racing.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/main_sim_f1tenth_racing.c.i
+.PHONY : c_generated_code/main_sim_f1tenth_racing.c.i
+
+c_generated_code/main_sim_f1tenth_racing.s: c_generated_code/main_sim_f1tenth_racing.c.s
+.PHONY : c_generated_code/main_sim_f1tenth_racing.s
+
+# target to generate assembly for a file
+c_generated_code/main_sim_f1tenth_racing.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acados_racing_solver.dir/build.make CMakeFiles/acados_racing_solver.dir/c_generated_code/main_sim_f1tenth_racing.c.s
+.PHONY : c_generated_code/main_sim_f1tenth_racing.c.s
+
 src/mpc_node.o: src/mpc_node.cpp.o
 .PHONY : src/mpc_node.o
 
@@ -273,6 +683,30 @@ src/mpc_node.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mpc_node.dir/build.make CMakeFiles/mpc_node.dir/src/mpc_node.cpp.s
 .PHONY : src/mpc_node.cpp.s
 
+src/racing_mpc_node.o: src/racing_mpc_node.cpp.o
+.PHONY : src/racing_mpc_node.o
+
+# target to build an object file
+src/racing_mpc_node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/racing_mpc_node.dir/build.make CMakeFiles/racing_mpc_node.dir/src/racing_mpc_node.cpp.o
+.PHONY : src/racing_mpc_node.cpp.o
+
+src/racing_mpc_node.i: src/racing_mpc_node.cpp.i
+.PHONY : src/racing_mpc_node.i
+
+# target to preprocess a source file
+src/racing_mpc_node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/racing_mpc_node.dir/build.make CMakeFiles/racing_mpc_node.dir/src/racing_mpc_node.cpp.i
+.PHONY : src/racing_mpc_node.cpp.i
+
+src/racing_mpc_node.s: src/racing_mpc_node.cpp.s
+.PHONY : src/racing_mpc_node.s
+
+# target to generate assembly for a file
+src/racing_mpc_node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/racing_mpc_node.dir/build.make CMakeFiles/racing_mpc_node.dir/src/racing_mpc_node.cpp.s
+.PHONY : src/racing_mpc_node.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -291,10 +725,63 @@ help:
 	@echo "... ament_cmake_python_copy_mpc_setup"
 	@echo "... mpc_uninstall"
 	@echo "... uninstall"
+	@echo "... acados_racing_solver"
 	@echo "... mpc_node"
+	@echo "... racing_mpc_node"
+	@echo "... c_generated_code/acados_sim_solver_f1tenth_racing.o"
+	@echo "... c_generated_code/acados_sim_solver_f1tenth_racing.i"
+	@echo "... c_generated_code/acados_sim_solver_f1tenth_racing.s"
+	@echo "... c_generated_code/acados_solver_f1tenth_racing.o"
+	@echo "... c_generated_code/acados_solver_f1tenth_racing.i"
+	@echo "... c_generated_code/acados_solver_f1tenth_racing.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_0_fun_jac_hess.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_e_fun_jac_hess.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac.s"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.o"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.i"
+	@echo "... c_generated_code/f1tenth_racing_cost/f1tenth_racing_cost_ext_cost_fun_jac_hess.s"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.o"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.i"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_ode_fun.s"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.o"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.i"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_adj.s"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.o"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.i"
+	@echo "... c_generated_code/f1tenth_racing_model/f1tenth_racing_expl_vde_forw.s"
+	@echo "... c_generated_code/main_f1tenth_racing.o"
+	@echo "... c_generated_code/main_f1tenth_racing.i"
+	@echo "... c_generated_code/main_f1tenth_racing.s"
+	@echo "... c_generated_code/main_sim_f1tenth_racing.o"
+	@echo "... c_generated_code/main_sim_f1tenth_racing.i"
+	@echo "... c_generated_code/main_sim_f1tenth_racing.s"
 	@echo "... src/mpc_node.o"
 	@echo "... src/mpc_node.i"
 	@echo "... src/mpc_node.s"
+	@echo "... src/racing_mpc_node.o"
+	@echo "... src/racing_mpc_node.i"
+	@echo "... src/racing_mpc_node.s"
 .PHONY : help
 
 

@@ -1,6 +1,8 @@
 /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles/uninstall.dir
 /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles/mpc_uninstall.dir
 /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles/mpc_node.dir
+/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles/acados_racing_solver.dir
+/home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles/racing_mpc_node.dir
 /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles/ament_cmake_python_copy_mpc.dir
 /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles/ament_cmake_python_copy_mpc_setup.dir
 /home/milan/roboracer_ws/src/lab-8-model-predictive-control-team8/build/mpc/CMakeFiles/ament_cmake_python_build_mpc_egg.dir
